@@ -1,0 +1,98 @@
+:root {
+  --color-heading: #776e65;
+  --color-shape-hover: #8f7a66; 
+  --color-bg: #faf8ef;
+  --color-reset: #22ff00;
+  --color-reset-hover: #1bc800;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-heading);
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px; }
+
+body {
+  text-align: center;
+  margin: 40px 0; 
+  font-weight: bold;
+}
+
+.container-full-creen {
+  width: 800px;
+  vertical-align: middle;
+  margin: 0 auto; }
+
+.heading:after {
+  content: "";
+  display: block;
+  clear: both; }
+
+h1.title {
+  text-align: center;
+  font-size: 80px;
+  margin: 0;
+  display: block; }
+
+.shape,
+.reset {
+  margin: 20px; 
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.shape button,
+.reset button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 3px;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+.shape button{
+  color: var(--color-shape-hover);
+  background: var(--color-bg);
+  border: 2px solid var(--color-heading);
+}
+.shape button:hover{
+  background: var(--color-shape-hover);
+  color: var(--color-bg);
+}
+
+.reset button{
+  color: var(--color-bg);
+  background: var(--color-reset);
+  border: 2px solid  var(--color-reset-hover);
+}
+.reset button:hover{
+  background: var(--color-reset-hover);
+}
+
+.active {
+  background: var(--color-shape-hover) !important;
+  color: var(--color-bg) !important;
+}
+
+.main {
+  position: relative;
+}
+.note {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.3); /* Nền mờ */
+  color: var(--color-heading);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight:normal;
+  text-align: left;
+}
