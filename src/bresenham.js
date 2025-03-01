@@ -22,7 +22,7 @@ canvas.setAttribute("width", width);
 canvas.setAttribute("height", height);
 
 // Hàm Vẽ
-function Painter(context, width, height) {
+function Painter_Bresenham(context, width, height) {
   // Khởi tạo các thuộc tính
   this.context = context;
   this.imageData = context.createImageData(width, height); // lưu dữ liệu hình ảnh của canvas.
@@ -76,11 +76,7 @@ function Painter(context, width, height) {
     }
   };
 
-  this.drawBkg = function (rgba) {
-    for (var i = 0; i < this.width; i++)
-      for (var j = 0; j < this.height; j++) 
-        this.setPixel(i, j, rgba);
-  };
+
 
   //  Tô Nền
   this.drawBkg = function (rgba) {
@@ -149,11 +145,11 @@ function Painter(context, width, height) {
 // Khởi tạo Trạng Thái
 state = 0; // 0: waiting 1: drawing 2: finished
 clickPos = [-1, -1];
-var painter = new Painter(context, width, height);
+var painter = new Painter_Bresenham(context, width, height);
 
 // Xử lý Sự Kiện
 // Chuyển đổi tọa độ chuột sang tọa độ canvas
-getPosOnCanvas = function (x, y) {
+bresenham_getPosOnCanvas = function (x, y) {
   var bbox = canvas.getBoundingClientRect();
   return [
     Math.floor(x - bbox.left * (canvas.width / bbox.width) + 0.5),
@@ -162,20 +158,20 @@ getPosOnCanvas = function (x, y) {
 };
 
 // Di chuyển chuột (mousemove)
-doMouseMove = function (e) {
+bresenham_doMouseMove = function (e) {
   if (state == 0 || state == 2) {
     return;
   }
-  var p = getPosOnCanvas(e.clientX, e.clientY);
+  var p = bresenham_getPosOnCanvas(e.clientX, e.clientY);
   painter.draw(p);
 };
 
 // Nhấp chuột (mousedown)
-doMouseDown = function (e) {
+bresenham_doMouseDown = function (e) {
   if (state == 2 || e.button != 0) {
     return;
   }
-  var p = getPosOnCanvas(e.clientX, e.clientY);
+  var p = bresenham_getPosOnCanvas(e.clientX, e.clientY);
 
   painter.addPoint(p);
   painter.draw(p);
@@ -187,7 +183,7 @@ doMouseDown = function (e) {
 };
 
 // Nhấn phím (keydown)
-doKeyDown = function (e) {
+bresenham_doKeyDown = function (e) {
   /*
     if (state == 2) {
       return;
@@ -205,7 +201,7 @@ doKeyDown = function (e) {
 };
 
 // Nút Reset
-doReset = function () {
+bresenham_doReset = function () {
   if (state == 0) {
     return;
   }
@@ -213,9 +209,9 @@ doReset = function () {
   painter.clear(); // Xóa toàn bộ canvas
 };
 
-canvas.addEventListener("mousedown", doMouseDown, false);
-canvas.addEventListener("mousemove", doMouseMove, false);
-window.addEventListener("keydown", doKeyDown, false);
+canvas.addEventListener("mousedown", bresenham_doMouseDown, false);
+canvas.addEventListener("mousemove", bresenham_doMouseMove, false);
+window.addEventListener("keydown", bresenham_doKeyDown, false);
 
 var resetButton = document.getElementById("reset");
-resetButton.addEventListener("click", doReset, false);
+resetButton.addEventListener("click", bresenham_doReset, false);
