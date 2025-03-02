@@ -18,6 +18,7 @@ body {
   text-align: center;
   margin: 40px 0; 
   font-weight: bold;
+  user-select: none;  /*cấm người dùng bôi copy*/
 }
 
 .container-full-creen {
@@ -95,4 +96,26 @@ h1.title {
   font-size: 14px;
   font-weight:normal;
   text-align: left;
+}
+
+.container-main{
+  /* position: relative; */
+}
+
+@keyframes moveUpDown {
+  0%, 100% { transform: translateY(-50%); } /* Vị trí ban đầu */
+  50% { transform: translateY(-30%); } /* Dịch lên trên */
+}
+
+.left-main{
+  position: fixed;
+  top: 25%;
+  left: 80%;
+  transform: translateY(0%);
+  animation: moveUpDown 2s infinite alternate ease-in-out;
+}
+
+.gif{
+  width: 80%;
+  height: auto;
 }
