@@ -140,6 +140,13 @@ midpoint_doMouseUp = function (e) {
 
 // Nhấn phím (keydown)
 midpoint_doKeyDown = function (e) {
+    var keyId = e.keyCode ? e.keyCode : e.which;
+    if (keyId == 27 && (state == 1 || state == 0)) { // esc
+      state = 2; 
+    }
+    if (e.ctrlKey && state == 2) { // Ctrl
+      state = 0; 
+    }
 };
 
 // Nút Reset

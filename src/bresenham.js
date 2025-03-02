@@ -65,18 +65,29 @@ function Painter_Bresenham(context, width, height) {
     var dx = Math.abs(x1 - x0), dy = Math.abs(y1 - y0);
     var sx = (x0 < x1) ? 1 : -1;
     var sy = (y0 < y1) ? 1 : -1;
-    var err = dx - dy;
 
-    while (true) {
-      this.setPixel(x0, y0, rgba);
-      if (x0 === x1 && y0 === y1) break;
-      var e2 = 2 * err;
-      if (e2 > -dy) { err -= dy; x0 += sx; }
-      if (e2 < dx) { err += dx; y0 += sy; }
+    if (dy <= dx){  // Đoạn thẳng tăng chậm (Trường hợp 1)
+      p = 2 * dy - dx
+      while (x0 != x1){
+          this.setPixel(x0, y0, rgba);  //Vẽ điểm đầu của đoạn thẳng
+          x0 += sx
+          if (p < 0){ p += 2 * dy}
+          else{ y0 += sy, p += 2 * dy - 2 * dx}   
+      }
     }
+    else{             //Đoạn thẳng tăng nhanh (Trường hợp 2)
+      p = 2 * dx - dy
+      while (y0 != y1){
+        this.setPixel(x0, y0, rgba);  //Vẽ điểm đầu của đoạn thẳng
+        y0 += sy
+        if (p < 0){ p += 2 * dx }
+        else{ x0 += sx, p += 2 * dx - 2 * dy }
+      }  
+    }
+
+    // Vẽ điểm cuối cùng của đoạn thẳng
+    this.setPixel(x1, y1, rgba);  
   };
-
-
 
   //  Tô Nền
   this.drawBkg = function (rgba) {
@@ -136,7 +147,6 @@ function Painter_Bresenham(context, width, height) {
     }
     this.points = []; // Xóa danh sách điểm để bắt đầu vẽ mới
   };
-
 
   this.clear();
   this.draw();

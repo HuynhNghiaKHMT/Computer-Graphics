@@ -104,7 +104,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             } else if (this.id === "ellipse") {
                 loadScript("src/ellipse.js", () => {
-
+                    addEventListeners({
+                        mousedown: ellipse_doMouseDown,
+                        mousemove: ellipse_doMouseMove,
+                        mouseup: ellipse_doMouseUp,
+                        keydown: ellipse_doKeyDown,
+                    });
                 });
             }
         });

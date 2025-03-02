@@ -155,7 +155,6 @@ function Painter_DDA(context, width, height) {
     this.points = []; // Xóa danh sách điểm để bắt đầu vẽ mới
   };
 
-
   this.clear();
   this.draw();
 }
