@@ -1,0 +1,62 @@
+:root {
+  --color-background:#000000;
+  --color-text:#ffffff;
+  --color-header:#212529;
+  --color-text-hover:#ffc107;
+  --color-button:#343a40;
+  --color-select:  #ffc533;
+  --color-reset: #ff3300;
+  --color-reset-hover:  #22ff00;
+}
+
+.container-lab03 .block-left{
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  position: relative;
+}
+
+.container-lab03 #canvas-lab03 {
+    background-color: white;
+    border-radius: 5px;
+}
+
+.container-lab03 .block-right{
+  background: var(--color-button);
+  border-radius: 5px;
+
+  text-align: center;
+  justify-items: center;
+}
+
+.container-lab03 #chart-select{
+  min-width: 200px;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--color-text);
+  background-color:var(--color-select);
+  cursor: pointer;
+}
+
+.container-lab03 .slider{
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}
+.container-lab03 label{
+  width: 60px;
+  text-align: right;
+}
+.container-lab03 span{
+  width: 30px;
+  text-align: left;
+}
+
+.container-lab03 input[type="number"] {
+  width: 100px; 
+  text-align: center;
+}

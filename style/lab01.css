@@ -1,0 +1,57 @@
+/* Setting */
+:root {
+  --color-background:#000000;
+  --color-text:#ffffff;
+  --color-header:#212529;
+  --color-text-hover:#ffc107;
+  --color-button:#343a40;
+  --color-select: #ffc533;
+  --color-reset: #ff3300;
+  --color-reset-hover:  #22ff00;
+}
+.container-lab01 .block-left {
+  position: relative;
+}
+
+.container-lab01 .note {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--color-button);
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight:normal;
+  text-align: left;
+}
+.container-lab01 #algorithm-select{
+  width: 150px;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--color-text);
+  background-color:var(--color-select);
+  cursor: pointer;
+  /* appearance: none; */
+}
+
+.container-lab01 #algorithm-image{
+  width: 95%;
+  border-radius: 5px;
+}
+.container-lab01 #algorithm-select,
+.container-lab01 #algorithm-image,
+.container-lab01 button#reset{
+  margin-bottom: 10px;
+}
+.container-lab01 button#reset{
+  width: 100px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--color-text);
+  background: var(--color-reset);
+  border: 0px solid  var(--color-text);
+}
+.container-lab01 button#reset:hover{
+  background: var(--color-reset-hover);
+}
+

@@ -1,0 +1,36 @@
+#canvas-lab02 {
+    border-radius: 5px;
+}
+#ui {
+    display: flex;
+    flex-direction: column; 
+    gap: 5px; 
+}
+#x, #y, #angle, #scaleX, #scaleY, #moveSpeed, #rotateSpeed {
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    padding: 5px; 
+}
+.gman-widget-outer {
+    display: flex;
+    gap: 30px; 
+    padding: 10px;
+    align-items: center;
+    width: 90; 
+    box-sizing: border-box; 
+}
+.gman-widget-label {
+    min-width: 100px;
+    text-align: right;
+    flex-shrink: 0; 
+}
+.gman-widget-value {
+    text-align: left;
+    min-width: 30px; 
+    flex-shrink: 0;
+}
+.gman-widget-slider {
+    flex-grow: 1; 
+    min-width: 150px;
+}

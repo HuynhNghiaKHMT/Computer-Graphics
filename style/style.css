@@ -1,0 +1,96 @@
+/* Setting */
+:root {
+  --color-background:#000000;
+  --color-text:#ffffff;
+  --color-header:#212529;
+  --color-text-hover:#ffc107;
+  --color-button:#343a40;
+  --color-reset: #ff3300;
+  --color-reset-hover:  #22ff00;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  text-align: center;
+  font-weight: bold;
+  user-select: none;  /*cấm người dùng bôi copy*/
+}
+
+/* Header */
+.header{
+  width: 100%;
+  background-color:var(--color-header);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+h1.labs-title{
+  width: 30%;
+  font-size: 30px;
+  text-align: left;
+  text-shadow: 1px 1px 0 #CCCCCC, 2px 2px 0 #CCCCCC, 3px 3px 0 #CCCCCC, 4px 4px 0 #CCCCCC, 5px 5px 0 #CCCCCC;
+}
+
+.labs-option{
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.hover:hover{
+  cursor: pointer;
+  color: var(--color-text-hover);
+}
+.active-lab-link {
+    color: var(--color-text-hover);
+}
+
+/* Body */
+.container{
+  width: 85%;
+  vertical-align: middle;
+  margin: 0 auto; 
+}
+h1.lab-title{
+  font-size: 50px;
+  margin: 20px;
+  color: var(--color-text-hover);
+}
+.hidden {
+    display: none !important;
+}
+.container-lab01,
+.container-lab02,
+.container-lab03,
+.container-lab04,
+.container-lab05,
+.container-lab06,
+.container-lab07{
+  display: flex;
+  justify-content: space-between;
+}
+.block-left{
+  width: 850px;
+  height: 550px;
+}
+
+.block-right{
+  font-weight:normal;
+  width: 30%;
+  background: var(--color-button);
+  border-radius: 5px;
+}
+h2.heading{
+  font-size: 24px;
+  color: var(--color-text-hover);
+  
+}

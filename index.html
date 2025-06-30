@@ -1,0 +1,335 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Computer Graphics</title>
+    <link href="style/style.css" rel="stylesheet" type="text/css">
+    <script type="importmap">
+                    {
+                        "imports": {
+                            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+                        }
+                    }
+    </script>
+
+</head>
+<body>
+    <div class="header">
+        <h1 class="labs-title">Computer Graphics</h1>
+        <div class="labs-option">
+                <p class="hover active-lab-link" id="lab01">Lab 01</p>
+                <p class="hover" id="lab02">Lab 02</p>
+                <p class="hover" id="lab03">Lab 03</p>
+                <p class="hover" id="lab04">Lab 04</p>
+                <p class="hover" id="lab05">Lab 05</p>
+                <p class="hover" id="lab06">Lab 06</p>
+                <p class="hover" id="lab07">Lab 07</p>
+            </div>
+    </div>
+
+    <div class="container">
+        <br><br><br>
+        <!-- <h1 class="lab-title" id="lab-title"></h1> -->
+
+        <div class="container-lab01 hidden">
+            <div class="block-left">
+                <canvas id="canvas-lab01"></canvas>
+                <div class="note">
+                    <p class="esc">Press "Esc" to stop</p>
+                    <p class="ctrl">Press "Ctrl" to continue</p>
+                </div>
+                <div id="script-container"></div>
+            </div>
+
+            <div class="block-right">
+                <h2 class="heading">Raster</h2>
+                <select id="algorithm-select">
+                    <option value="dda">DDA</option>
+                    <option value="bresenham">Bresenham</option>
+                    <option value="midpoint">Midpoint</option>
+                    <option value="ellipse">Ellipse</option>
+                </select>
+
+                <img id="algorithm-image" alt="Algorithm">             
+
+                <button id="reset">Reset</button>
+            </div>
+        </div> 
+        
+        <div class="container-lab02 hidden">
+            <div class="block-left">
+                <canvas id="canvas-lab02" width="850" height="550"></canvas>
+            </div>
+
+            <div class="block-right">
+                <h2 class="heading">Affine transformation (2D)</h2>
+                <div id="ui">
+                <div id="x"></div>
+                <div id="y"></div>
+                <div id="angle"></div>
+                <div id="scaleX"></div>
+                <div id="scaleY"></div>
+                <div id="moveSpeed"></div>
+                <div id="rotateSpeed"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-lab03 hidden">
+
+            <div class="block-left">
+                <canvas id="canvas-lab03" width="850" height="550"></canvas>
+            </div>
+
+            <div class="block-right">
+                <h2 class="heading">Curve</h2>
+                <select id="chart-select">
+                    <option value="graph">Đồ thị hàm số (Mặc định)</option>
+                    <option value="grapht">Đồ thị hàm số (Đường cong)</option>
+                    <option value="bezier">Đường cong Bezier</option>
+                    <option value="hermite">Đường cong Hermite</option>
+                </select>
+
+                <div class="graph">
+                    <label for="f(x)">F(x): 0.1x³ - 0.2x² - 0.2x + 3</label>
+
+                    <div class="slider">
+                        <label for="xmin">Xmin:</label>
+                        <input type="range" id="xmin" min="-4" max="4" step="0.1" value="-4" oninput="updateValue('xminValue', this.value)">
+                        <span id="xminValue">-4</span>
+                    </div>
+                    
+                    <div class="slider">
+                        <label for="xmax">Xmax:</label>
+                        <input type="range" id="xmax" min="-4" max="4" step="0.1" value="4" oninput="updateValue('xmaxValue', this.value)">
+                        <span id="xmaxValue">4</span>
+                    </div>
+                    
+                    <div class="slider">
+                        <label for="lamda">Lamda:</label>
+                        <input type="range" id="lamda" min="0.05" max="1" step="0.05" value="0.5" oninput="updateValue('lamdaValue', this.value)">
+                        <span id="lamdaValue">0.5</span>
+                    </div>
+                </div>
+
+                <div class="grapht">
+                    <label for="x(t)">x(t) = cos(5t) * cos(t)</label>
+                    <br>
+                    <label for="y(t)">y(t) =  cos(5t) * sin(t)</label>
+
+                    <div class="slider">
+                        <label for="tmin">Tmin:</label>
+                        <input type="range" id="tmin" min="0" max="2" step="0.1" value="0" oninput="updateValue('tminValue', this.value)">
+                        <span id="tminValue">0</span>
+                    </div>
+                    
+                    <div class="slider">
+                        <label for="tmax">Tmax:</label>
+                        <input type="range" id="tmax" min="0" max="2" step="0.1" value="2" oninput="updateValue('tmaxValue', this.value)">
+                        <span id="tmaxValue">2</span>
+                    </div>
+                    
+                    <div class="slider">
+                        <label for="tlamda">Lamda:</label>
+                        <input type="range" id="tlamda" min="0.01" max="0.5" step="0.01" value="0.05" oninput="updateValue('tlamdaValue', this.value)">
+                        <span id="tlamdaValue">0.05</span>
+                    </div>
+                </div>
+
+                <div class="bezier">
+                    <div class="control-group">
+                        <label>P0:</label> 
+                        <input type="number" id="p0x" value="250"> px,
+                        <input type="number" id="p0y" value="400"> px
+                    </div>
+                    <div class="control-group">
+                        <label>P1:</label> 
+                        <input type="number" id="p1x" value="250"> px, 
+                        <input type="number" id="p1y" value="200"> px
+                    </div>
+                    <div class="control-group">
+                        <label>P2:</label> 
+                        <input type="number" id="p2x" value="350"> px,
+                        <input type="number" id="p2y" value="300"> px
+                    </div>
+                    <div class="control-group">
+                        <label>P3:</label> 
+                        <input type="number" id="p3x" value="450"> px, 
+                        <input type="number" id="p3y" value="250"> px
+                    </div>
+                    <div class="control-group">
+                        <label>P4:</label> 
+                        <input type="number" id="p4x" value="550"> px,
+                        <input type="number" id="p4y" value="350"> px
+                    </div>
+                    <div class="control-group">
+                        <label>P5:</label> 
+                        <input type="number" id="p5x" value="600"> px, 
+                        <input type="number" id="p5y" value="200"> px
+                    </div>
+                </div>
+
+                <div class="hermite">
+                    <div class="input-group">
+                        <label>P0:</label>
+                        <input type="number" id="x0" value="250"> px,
+                        <input type="number" id="y0" value="500"> px
+                    </div>
+                    <div class="input-group">
+                        <label>P1:</label>
+                        <input type="number" id="x1" value="600"> px,
+                        <input type="number" id="y1" value="400"> px
+                    </div>
+                    <div class="input-group">
+                        <label>T0:</label>
+                        <input type="number" id="tx0" value="0"> px,
+                        <input type="number" id="ty0" value="-400"> px
+                    </div>
+                    <div class="input-group">
+                        <label>T1:</label>
+                        <input type="number" id="tx1" value="0"> px,
+                        <input type="number" id="ty1" value="-300"> px
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        <div class="container-lab04 hidden">
+            
+        </div>
+
+        <div class="container-lab05 hidden">
+            <div class="block-left" id="lab05-block-left">
+                
+                </div>
+            <div class="block-right">
+                <h2 class="heading">Affine transformation (3D)</h2>
+
+                <label for="objectSelect">Chọn đối tượng:</label>
+                <select id="objectSelect">
+                    <option value="box">Hộp</option>
+                    <option value="sphere">Hình cầu</option>
+                    <option value="cone">Hình chóp</option>
+                    <option value="cylinder">Hình trụ</option>
+                    <option value="torus">Xuyến</option>
+                </select>
+                <br /> <br />
+                <label>
+                    Translate X:
+                    <input type="range" min="-5" max="5" step="0.1" id="posX" value="0" />
+                    <span id="posXVal">0cm</span>
+                </label><br />
+                <label>
+                    Translate Y:
+                    <input type="range" min="-5" max="5" step="0.1" id="posY" value="0" />
+                    <span id="posYVal">0cm</span>
+                </label><br />
+                <label>
+                    Translate Z:
+                    <input type="range" min="-5" max="5" step="0.1" id="posZ" value="0" />
+                    <span id="posZVal">0cm</span>
+                </label><br />
+                <br /> <br />
+                <label>
+                    Rotation X:
+                    <input type="range" min="-360" max="360" step="1" id="rotationX" value="0" />
+                    <span id="rotationXVal">0°</span>
+                </label><br />
+                <label>
+                    Rotation Y:
+                    <input type="range" min="-360" max="360" step="1" id="rotationY" value="0" />
+                    <span id="rotationYVal">0°</span>
+                </label><br />
+                <label>
+                    Rotation Z:
+                    <input type="range" min="-360" max="360" step="1" id="rotationZ" value="0" />
+                    <span id="rotationZVal">0°</span>
+                </label><br />
+                <br /> <br />
+                <label>
+                    Scale X:
+                    <input type="range" min="0" max="5" step="0.1" id="scaleX-3D" value="1" />
+                    <span id="scaleXVal">1</span>
+                </label><br />
+                <label>
+                    Scale Y:
+                    <input type="range" min="0" max="5" step="0.1" id="scaleY-3D" value="1" />
+                    <span id="scaleYVal">1</span>
+                </label><br />
+                <label>
+                    Scale Z:
+                    <input type="range" min="0" max="5" step="0.1" id="scaleZ-3D" value="1" />
+                    <span id="scaleZVal">1</span>
+                </label><br />
+                <br /> <br />
+            </div> 
+        </div>
+        
+        <div class="container-lab06 hidden" id="lab06-block-left">
+            <div class="block-left">
+                
+            </div>
+            <div class="block-right">
+                <h2 class="heading">Observational transformation</h2>
+
+                <label>LookAt X:
+                        <input type="range" id="lookAtX" min="-360" max="360" step="1" value="0" />
+                        <span id="lookAtXVal">0</span>
+                </label>
+                <br />
+                <label>LookAt Y:
+                        <input type="range" id="lookAtY" min="-360" max="360" step="1" value="0" />
+                        <span id="lookAtYVal">0</span>
+                </label>
+                <br />
+                <label>LookAt Z:
+                        <input type="range" id="lookAtZ" min="-360" max="360" step="1" value="0" />
+                        <span id="lookAtZVal">0</span>
+                </label>
+                <br />
+                <br /><br />
+                <label>VRP X:
+                            <input type="range" min="0" max="20" step="1" id="camX" value="10" />
+                            <span id="camXVal">10</span> 
+                </label>
+                <br />
+                <label>VRP Y:
+                            <input type="range" min="0" max="20" step="1" id="camY" value="10" />
+                            <span id="camYVal">10</span> 
+                </label>
+                <br />
+                <label>VRP Z:
+                            <input type="range" min="0" max="20" step="1" id="camZ" value="10" />
+                            <span id="camZVal">10</span> 
+                </label><br />
+                <br /><br />
+            </div>
+        </div>
+
+        <div class="container-lab07 hidden">
+            <div class="block-left">
+                <canvas id="lab07-canvas"  width="850" height="550"></canvas> 
+            </div>
+            <div class="block-right">
+                <h2 class="heading">Lighting & Texture</h2>
+                <div id="lab07-gui-container"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript" src="src/webgl-utils.js"></script>
+    <script type="text/javascript" src="src/webgl-lessons-ui.js"></script>
+    <script type="text/javascript" src="src/lab02-shaders.js"></script> 
+
+    <script type="text/javascript" src="src/lab01.js"></script>
+    <script type="text/javascript" src="src/lab02.js"></script>
+    <script type="text/javascript" src="src/lab03.js"></script>
+    <script type="text/javascript" src="src/lab04.js"></script>
+    <script type="module" src="src/lab05.js"></script>
+    <script type="module" src="src/lab06.js"></script>
+    <script type="module" src="src/lab07.js"></script>
+
+    <script type="text/javascript" src="src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+.container-lab07 .block-right {
+    padding: 20px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: flex-start; 
+    overflow-y: auto; 
+    box-sizing: border-box; 
+}
+
+#lab07-gui-container {
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-start; 
+}
+
+#lab07-gui-container .lil-gui {
+    
+    position: relative; 
+    left: auto !important; 
+    top: auto !important;  
+}
+
