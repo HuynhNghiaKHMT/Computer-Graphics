@@ -152,7 +152,7 @@ window.kochSnowflake = {
         
         let newLevel = this.level + delta;
 
-        if (newLevel > maxLevel) {
+        if (newLevel >= maxLevel) {
             this.level = maxLevel;
             if (limitMessage) {
                 limitMessage.classList.remove('hidden');
