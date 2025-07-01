@@ -5,12 +5,12 @@
     <title>Computer Graphics</title>
     <link href="style/style.css" rel="stylesheet" type="text/css">
     <script type="importmap">
-                    {
-                        "imports": {
-                            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-                            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-                        }
-                    }
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
     </script>
 
 </head>
@@ -18,14 +18,14 @@
     <div class="header">
         <h1 class="labs-title">Computer Graphics</h1>
         <div class="labs-option">
-                <p class="hover active-lab-link" id="lab01">Lab 01</p>
-                <p class="hover" id="lab02">Lab 02</p>
-                <p class="hover" id="lab03">Lab 03</p>
-                <p class="hover" id="lab04">Lab 04</p>
-                <p class="hover" id="lab05">Lab 05</p>
-                <p class="hover" id="lab06">Lab 06</p>
-                <p class="hover" id="lab07">Lab 07</p>
-            </div>
+            <p class="hover active-lab-link" id="lab01">Lab 01</p>
+            <p class="hover" id="lab02">Lab 02</p>
+            <p class="hover" id="lab03">Lab 03</p>
+            <p class="hover" id="lab04">Lab 04</p>
+            <p class="hover" id="lab05">Lab 05</p>
+            <p class="hover" id="lab06">Lab 06</p>
+            <p class="hover" id="lab07">Lab 07</p>
+        </div>
     </div>
 
     <div class="container">
@@ -51,7 +51,7 @@
                     <option value="ellipse">Ellipse</option>
                 </select>
 
-                <img id="algorithm-image" alt="Algorithm">             
+                <img id="algorithm-image" alt="Algorithm"> 
 
                 <button id="reset">Reset</button>
             </div>
@@ -193,16 +193,87 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
 
         <div class="container-lab04 hidden">
-            
+            <div class="block-left">
+                <canvas id="glCanvas" width="850" height="550"></canvas>
+            </div>
+            <div class="block-right">
+                <h2 class="heading">Fractal</h2>
+                <select id="fractal-select">
+                    <option value="vankoch">Koch Snowflake</option>
+                    <option value="minkowski">Minkowski Island</option>
+                    <option value="sierpinskiT">Sierpinski Triangles</option>
+                    <option value="sierpinskiC">Sierpinski Carpet</option>
+                    <option value="mandelbrot">Mandelbrot Set</option>
+                    <option value="julia">Julia Set</option>
+                </select>
+
+                <!-- Các ID đã được làm duy nhất cho mỗi nhóm điều khiển -->
+                <div class="vankoch control-group">
+                    <div class="controls">
+                        <button id="decreaseLevelKoch">-</button>
+                        <span id="levelDisplayKoch">0</span>
+                        <button id="increaseLevelKoch">+</button>
+                    </div>
+                    <p id="kochLimitMessage" class="limit-message hidden">Bạn đã vẽ đến giới hạn hiển thị. <br> Hãy giảm level để tiếp tục!</p>
+                </div>
+
+                <div class="minkowski control-group">
+                    <div class="controls">
+                        <button id="decreaseLevelMinkowski">-</button>
+                        <span id="levelDisplayMinkowski">0</span>
+                        <button id="increaseLevelMinkowski">+</button>
+                    </div>
+                    <p id="minkowskiLimitMessage" class="limit-message hidden">Bạn đã vẽ đến giới hạn hiển thị.<br> Hãy giảm level để tiếp tục!</p>
+                </div>
+
+                <div class="sierpinskiT control-group">
+                    <div class="controls">
+                        <button id="decreaseLevelSierpinskiT">-</button>
+                        <span id="levelDisplaySierpinskiT">0</span>
+                        <button id="increaseLevelSierpinskiT">+</button>
+                    </div>
+                    <p id="sierpinskiTLimitMessage" class="limit-message hidden">Bạn đã vẽ đến giới hạn hiển thị. <br> Hãy giảm level để tiếp tục!</p>
+                </div>
+
+                <div class="sierpinskiC control-group">
+                    <div class="controls">
+                        <button id="decreaseLevelSierpinskiC">-</button>
+                        <span id="levelDisplaySierpinskiC">0</span>
+                        <button id="increaseLevelSierpinskiC">+</button>
+                    </div>
+                    <p id="sierpinskiCLimitMessage" class="limit-message hidden">Bạn đã vẽ đến giới hạn hiển thị. <br> Hãy giảm level để tiếp tục!</p>
+                </div>
+                
+                <div class="mandelbrot control-group">
+                    <!-- <div class="controls">
+                        <button id="decreaseLevelMandelbrot">-</button>
+                        <span id="levelDisplayMandelbrot">0</span>
+                        <button id="increaseLevelMandelbrot">+</button>
+                    </div> -->
+                    <p>Dùng phím + / - để zoom. </p>
+                    <p>Dùng phím mũi tên để move.</p>
+                </div>
+                <div class="julia control-group">
+                    <div class="parameter-container">
+                        <p>Constant = (
+                            <input type="number" id="realJulia" min="-4.00" max="4.00" value="0.00" step="0.01">
+                            <input type="number" id="imagJulia" min="-4.00" max="4.00" value="0.00" step="0.01">
+                        )</p>
+                        <p>Current Step Size =
+                            <input type="number" id="stepSizeJulia" min="0.01" max="0.25" value="0.01" step="0.01">
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="container-lab05 hidden">
-            <div class="block-left" id="lab05-block-left">
-                
-                </div>
+            <div class="block-left">
+                <div id="lab05-block-left"></div>
+            </div>
             <div class="block-right">
                 <h2 class="heading">Affine transformation (3D)</h2>
 
@@ -266,42 +337,42 @@
             </div> 
         </div>
         
-        <div class="container-lab06 hidden" id="lab06-block-left">
+        <div class="container-lab06 hidden">
             <div class="block-left">
-                
+                <div id="lab06-block-left"></div>
             </div>
             <div class="block-right">
                 <h2 class="heading">Observational transformation</h2>
 
                 <label>LookAt X:
-                        <input type="range" id="lookAtX" min="-360" max="360" step="1" value="0" />
-                        <span id="lookAtXVal">0</span>
+                    <input type="range" id="lookAtX" min="-360" max="360" step="1" value="0" />
+                    <span id="lookAtXVal">0</span>
                 </label>
                 <br />
                 <label>LookAt Y:
-                        <input type="range" id="lookAtY" min="-360" max="360" step="1" value="0" />
-                        <span id="lookAtYVal">0</span>
+                    <input type="range" id="lookAtY" min="-360" max="360" step="1" value="0" />
+                    <span id="lookAtYVal">0</span>
                 </label>
                 <br />
                 <label>LookAt Z:
-                        <input type="range" id="lookAtZ" min="-360" max="360" step="1" value="0" />
-                        <span id="lookAtZVal">0</span>
+                    <input type="range" id="lookAtZ" min="-360" max="360" step="1" value="0" />
+                    <span id="lookAtZVal">0</span>
                 </label>
                 <br />
                 <br /><br />
                 <label>VRP X:
-                            <input type="range" min="0" max="20" step="1" id="camX" value="10" />
-                            <span id="camXVal">10</span> 
+                                <input type="range" min="0" max="20" step="1" id="camX" value="10" />
+                                <span id="camXVal">10</span> 
                 </label>
                 <br />
                 <label>VRP Y:
-                            <input type="range" min="0" max="20" step="1" id="camY" value="10" />
-                            <span id="camYVal">10</span> 
+                                <input type="range" min="0" max="20" step="1" id="camY" value="10" />
+                                <span id="camYVal">10</span> 
                 </label>
                 <br />
                 <label>VRP Z:
-                            <input type="range" min="0" max="20" step="1" id="camZ" value="10" />
-                            <span id="camZVal">10</span> 
+                                <input type="range" min="0" max="20" step="1" id="camZ" value="10" />
+                                <span id="camZVal">10</span> 
                 </label><br />
                 <br /><br />
             </div>
@@ -322,13 +393,9 @@
     <script type="text/javascript" src="src/webgl-lessons-ui.js"></script>
     <script type="text/javascript" src="src/lab02-shaders.js"></script> 
 
-    <script type="text/javascript" src="src/lab01.js"></script>
-    <script type="text/javascript" src="src/lab02.js"></script>
     <script type="text/javascript" src="src/lab03.js"></script>
-    <script type="text/javascript" src="src/lab04.js"></script>
     <script type="module" src="src/lab05.js"></script>
     <script type="module" src="src/lab06.js"></script>
-    <script type="module" src="src/lab07.js"></script>
 
     <script type="text/javascript" src="src/main.js"></script>
 </body>

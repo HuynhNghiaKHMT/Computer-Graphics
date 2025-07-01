@@ -1,0 +1,42 @@
+:root {
+  --color-background:#000000;
+  --color-text:#ffffff;
+  --color-header:#212529;
+  --color-text-hover:#ffc107;
+  --color-select:  #ffc533;
+  --color-button:#343a40;
+  --color-reset: #ff3300;
+  --color-reset-hover:  #22ff00;
+}
+#glCanvas{
+  border-radius: 5px;
+}
+#fractal-select{
+  min-width: 200px;
+  margin-bottom: 20px;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--color-text);
+  background-color:var(--color-select);
+  cursor: pointer;
+}
+.controls{
+    max-width: 80px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.limit-message {
+    color: var(--color-text-hover);
+    margin: 30px 50px 30px;
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #ffffff;
+}
+
+.limit-message.hidden {
+    display: none;
+}

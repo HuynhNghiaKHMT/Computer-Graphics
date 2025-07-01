@@ -13,38 +13,48 @@ document.addEventListener("DOMContentLoaded", function () {
     const labResources = {
         "lab01": {
             style: "lab01.css",
-            scripts: ["lab01.js"]
+            scripts: ["lab01.js"],
+            initFunction: "initLab01",
+            cleanupFunction: "cleanupLab01"
         },
         "lab02": {
             style: "lab02.css",
-            // Thứ tự tải script là CỰC KỲ QUAN TRỌNG cho Lab02
-            scripts: ["webgl-utils.js", "webgl-lessons-ui.js", "lab02-shaders.js","lab02.js"]
+            scripts: ["webgl-utils.js", "webgl-lessons-ui.js", "lab02-shaders.js","lab02.js"],
+            initFunction: "initLab02",
+            cleanupFunction: "cleanupLab02"
         },
         "lab03": {
             style: "lab03.css",
-            scripts: ["lab03.js"]
+            scripts: ["lab03.js"],
+            initFunction: "initLab03",
+            cleanupFunction: "cleanupLab03"
         },
         "lab04": {
-            // Placeholder: Thêm style và scripts khi có
             style: "lab04.css",
-            scripts: ["lab04.js"]
+            scripts: ["webgl-utils.js", "webgl-lessons-ui.js","lab04.js"], // lab04.js sẽ tự động tải các fractal con
+            initFunction: "initLab04", // Hàm khởi tạo mới cho lab04
+            cleanupFunction: "cleanupLab04" // Hàm dọn dẹp mới cho lab04
         },
         "lab05": {
             style: "lab05.css",
             scripts: ["lab05.js"],
-            scriptTypes: { "lab05.js": "module" } // Chỉ định type="module" cho lab05.js
+            scriptTypes: { "lab05.js": "module" },
+            initFunction: "initLab05",
+            cleanupFunction: "cleanupLab05"
         },
         "lab06": {
-            // Placeholder: Thêm style và scripts khi có
             style: "lab06.css",
             scripts: ["lab06.js"],
-            scriptTypes: { "lab06.js": "module" }
+            scriptTypes: { "lab06.js": "module" },
+            initFunction: "initLab06",
+            cleanupFunction: "cleanupLab06"
         },
         "lab07": {
-            // Placeholder: Thêm style và scripts khi có
             style: "lab07.css",
             scripts: ["lab07.js"],
-            scriptTypes: { "lab07.js": "module" }
+            scriptTypes: { "lab07.js": "module" },
+            initFunction: "initLab07",
+            cleanupFunction: "cleanupLab07"
         }
     };
 
@@ -109,10 +119,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 const scriptFileName = resources.scripts[scriptIndex];
                 const newScript = document.createElement("script");
                 newScript.src = `src/${scriptFileName}`;
-                // Xác định type của script (mặc định là "text/javascript", có thể là "module")
                 newScript.type = resources.scriptTypes && resources.scriptTypes[scriptFileName]
-                                 ? resources.scriptTypes[scriptFileName]
-                                 : "text/javascript";
+                                     ? resources.scriptTypes[scriptFileName]
+                                     : "text/javascript";
 
                 newScript.onload = () => {
                     console.log(`[main.js] Loaded script: ${newScript.src.split('/').pop()}`);
@@ -128,10 +137,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 document.body.appendChild(newScript);
             } else {
                 // Tất cả các script đã được tải, gọi hàm khởi tạo của Lab
-                const initFuncName = `init${labId.charAt(0).toUpperCase() + labId.slice(1)}`; // Ví dụ: initLab02
-                const cleanupFuncName = `cleanup${labId.charAt(0).toUpperCase() + labId.slice(1)}`; // Ví dụ: cleanupLab02
+                const initFuncName = resources.initFunction;
+                const cleanupFuncName = resources.cleanupFunction;
 
-                if (typeof window[initFuncName] === 'function') {
+                if (initFuncName && typeof window[initFuncName] === 'function') {
                     window[initFuncName]();
                     currentLabCleanupFunction = window[cleanupFuncName]; // Lưu hàm cleanup
                     console.log(`[main.js] Called initialization function: ${initFuncName}`);
@@ -169,10 +178,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById(selectedLabId).classList.add("active-lab-link");
     }
 
-    // Tải trang ban đầu: Thiết lập Lab 01 là active
-    showLabContainer(7); // Đảm bảo container lab01 hiển thị
-    setActiveLabLink("lab07"); // Đảm bảo liên kết lab01 active
-    loadLabResources("lab07"); // Tải tài nguyên cho Lab01 ngay khi trang tải
+    // Tải trang ban đầu: Thiết lập Lab 04 là active
+    showLabContainer(1); // Đảm bảo container lab04 hiển thị
+    setActiveLabLink("lab01"); // Đảm bảo liên kết lab04 active
+    loadLabResources("lab01"); // Tải tài nguyên cho Lab04 ngay khi trang tải
 
     // Lắng nghe sự kiện click trên các liên kết lab trong header
     labLinksContainer.addEventListener("click", function (event) {
@@ -183,33 +192,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             setActiveLabLink(selectedLabId);
             showLabContainer(labNumber);
-
-            // // Cập nhật tiêu đề chính của lab
-            // switch (selectedLabId) {
-            //     case "lab01":
-            //         labTitle.textContent = "Raster";
-            //         break;
-            //     case "lab023":
-            //         labTitle.textContent = "Affine transformation (2D)";
-            //         break;
-            //     case "lab03":
-            //         labTitle.textContent = "Curve";
-            //         break;
-            //     case "lab04":
-            //         labTitle.textContent = "Fractal";
-            //         break;
-            //     case "lab05":
-            //         labTitle.textContent = "Affine transformation (3D)";
-            //         break;
-            //     case "lab06":
-            //         labTitle.textContent = "Observational transformation";
-            //         break;
-            //     case "lab07":
-            //         labTitle.textContent = "Lighting & Texture";
-            //         break;
-            //     default:
-            //         labTitle.textContent = "Computer Graphic Lab";
-            // }
 
             // Tải tài nguyên cho lab được chọn
             loadLabResources(selectedLabId);

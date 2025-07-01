@@ -41,6 +41,7 @@ function initThreeJS() {
     renderer.setSize(width, height);
     renderer.shadowMap.enabled = true; // Enable shadow maps
     renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Softer shadows
+    renderer.domElement.style.borderRadius = '5px'; 
     container.appendChild(renderer.domElement);
 
     // Add resize listener

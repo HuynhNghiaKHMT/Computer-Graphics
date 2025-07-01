@@ -34,6 +34,7 @@ export function initLab07() {
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.domElement.style.borderRadius = '5px'; 
 
   // Orbit Controls - Vẫn cần để điều khiển camera bằng chuột, chỉ là không hiển thị trên GUI
   controls = new OrbitControls(camera, renderer.domElement);

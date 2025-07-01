@@ -12,7 +12,9 @@
 .container-lab01 .block-left {
   position: relative;
 }
-
+#canvas-lab01{
+  border-radius: 5px;
+}
 .container-lab01 .note {
   position: absolute;
   top: 10px;
